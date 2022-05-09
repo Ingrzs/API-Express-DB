@@ -44,10 +44,51 @@ const prisma = new PrismaClient();
     });
 
     console.log('Create 3 explorers');
+
+    const rzs1 = await prisma.mission.upsert({
+      where: { name: 'rzs 1' },
+      update: {},
+      create: {
+        name: 'rzs 1',
+				lang: 'backend',
+				missioncommander: 'Carlo',
+        enrollments: 76786,
+        hasCertification: true
+      },
+    });
+      const rzs2 = await prisma.mission.upsert({
+        where: { name: 'rzs 2' },
+        update: {},
+        create: {
+          name: 'rzs 2',
+          lang: 'frontend',
+          missioncommander: 'roma',
+          enrollments: 23453,
+          hasCertification: true
+        },
+    });
+
+    const rzs3 = await prisma.mission.upsert({
+      where: { name: 'rzs 3' },
+      update: {},
+      create: {
+        name: 'rzs 3',
+        lang: 'phyton',
+        missioncommander: 'fer',
+        enrollments: 58453,
+        hasCertification: true
+      },
+  });
+
+
   } catch(e) {
     console.error(e);
     process.exit(1);
   } finally {
     await prisma.$disconnect();
+
+
+
+
   }
 })();
